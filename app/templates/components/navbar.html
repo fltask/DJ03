@@ -10,19 +10,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                {# Получаем URL-адреса для сравнения #}
-                {% url 'home'         as home_url %}
-                {% url 'page1'        as page1_url %}
-                {% url 'page2'        as page2_url %}
-                {% url 'news_home'    as news_url %}
-                {% with path=request.path %}
                     <div class="navbar-nav">
-                        <a class="nav-link {% active 'home' %}" href="{% url 'home' %}">Главная</a>
                         <a class="nav-link {% active 'page1' %}" href="{% url 'page1' %}">Страница 1</a>
                         <a class="nav-link {% active 'page2' %}" href="{% url 'page2' %}">Страница 2</a>
                         <a class="nav-link {% active 'news_home' %}" href="{% url 'news_home' %}">Новости</a>
                     </div>
-                {% endwith %}
             </div>
         </div>
     </nav>
