@@ -1,12 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Главная</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'page1' %}">Страница 1</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'page2' %}">Страница 2</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'page3' %}">Страница 3</a></li>
-            </ul>
+{% load nav_active %}
+
+<header>
+    <nav class="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Главная</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Переключить навигацию">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                {# Получаем URL-адреса для сравнения #}
+                {% url 'home'         as home_url %}
+                {% url 'page1'        as page1_url %}
+                {% url 'page2'        as page2_url %}
+                {% url 'news_home'    as news_url %}
+                {% with path=request.path %}
+                    <div class="navbar-nav">
+                        <a class="nav-link {% active 'home' %}" href="{% url 'home' %}">Главная</a>
+                        <a class="nav-link {% active 'page1' %}" href="{% url 'page1' %}">Страница 1</a>
+                        <a class="nav-link {% active 'page2' %}" href="{% url 'page2' %}">Страница 2</a>
+                        <a class="nav-link {% active 'news_home' %}" href="{% url 'news_home' %}">Новости</a>
+                    </div>
+                {% endwith %}
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
